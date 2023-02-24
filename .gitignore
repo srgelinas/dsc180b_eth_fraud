@@ -6,3 +6,4 @@ Gemfile.lock
 .jekyll-cache
 .rubocop.yml
 .travis.yml
+.DS_Store
