@@ -4,5 +4,5 @@ Gemfile.lock
 *.gem
 .jekyll-cache
 .jekyll-cache
-.rubocop
-.travis
+.rubocop.yml
+.travis.yml
