@@ -1,5 +1,5 @@
 title: Fraud Detection in Ethereum Transaction Networks
-description: A comparison of graph-based and non-graph based deep learning approaches to fraud detection utilizing TigerGraph.
-show_downloads: true
-google_analytics:
+description: A comparison of graph-based and non-graph based deep learning approaches to fraud detection utilizing TigerGraph
+github:
+  repository_url: https://github.com/KazumaYamamoto2023/DSC180B-Q2-Project/tree/main
 theme: jekyll-theme-cayman
