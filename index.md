@@ -38,8 +38,6 @@ The dataset can be downloaded from [XBlock](http://xblock.pro/#/dataset/6), one 
 
 We define fraud detection in Ethereum transaction networks as a node classification problem. We will represent the transaction network as a graph where nodes represent wallets/accounts and edges represent transactions between accounts. Each node in the network has the following features: id, indegree, outdegree, minimum sent, minimum sent, total sent, average sent, minimum received, maximum received, total received, average received, pagerank and label. Each edge in the network has one associated feature, the transaction timestamp. The labelled transaction data were split into 80% training and 20% testing sets. Our goal is to learn a function mapping node attributes to a label associated with account identity, whether the target account is fraudulent or not.
 
-# Processing
-
 # Methods
 
 ## SVM
@@ -70,8 +68,6 @@ The final model we evaluated was Topology Adaptive GCN (TA-GCN). TA-GCN is a gra
 # Results
 
 # Discussion
-<<<<<<< Updated upstream
-=======
 
 # References
 
@@ -86,4 +82,3 @@ The final model we evaluated was Topology Adaptive GCN (TA-GCN). TA-GCN is a gra
 [5] Jian Du, Shanghang Zhang, Guanhang Wu, Jose M. F. Moura, Soummya Kar: “Topology Adaptive Graph Convolutional Networks”, 2017; [arXiv:1710.10370](http://arxiv.org/abs/1710.10370)
 
 [6] Mark Cheung, John Shi, Lavender Yao Jiang, Oren Wright, José M. F. Moura: “Pooling in Graph Convolutional Neural Networks”, 2020; [arXiv:2004.03519](http://arxiv.org/abs/2004.03519)
->>>>>>> Stashed changes
