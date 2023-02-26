@@ -1,11 +1,21 @@
 ![Image](images/graph_schema.png)
-<p align="center"><em>Graph Schema</em></p>
+<p align="center"><em>Transaction Graph Schema</em></p>
 
 # Motivation
 
-Approximately 1 million Ethereum transactions occur daily, and investing more resources into Ethereum fraud detection is crucial for public confidence in blockchain and cryptocurrency adoption. As the popularity of Ethereum and other cryptocurrencies continues to grow, so does the potential for fraudulent activities within the transaction network. These activities can have a significant impact on both individual investors and the broader financial system. Additionally, the anonymous, decentralized nature of cryptocurriences makes it more challenging to identify and prevent fraudulent transactions. This highlights the need for more sophisticated and innovative fraud detection techniques. Finally, by investing in fraud detection, we can create a safer and more reliable environment for investors, which could increase overall confidence in the cryptocurrency market. Ultimately, investing in Ethereum fraud detection is a necessary step towards ensuring the integrity and sustainability of the cryptocurrency ecosystem.
+According to the FTC, cryptocurrency scams have cost online users over $1 Billion since 2021. It is crucial to invest more resources into fraud detection for public confidence in blockchain and cryptocurrency adoption. As the popularity of Ethereum and other cryptocurrencies continues to grow, so does the potential for fraudulent activities within the transaction network. These activities can have a significant impact on both individual investors and the broader financial system. 
 
-This project aims to compare graph-based to non-graph based algorithms for fraud detection in Ethereum transaction networks. We will predict whether a given Ethereum wallet in the transaction graph is fraudulent or non-fraudulent, given the wallet's transaction history in the network. Graph exploration, analysis, and model building will be conducted using [TigerGraph](https://tgcloud.io/), an enterprise-scale graph data platform for advanced analytics and machine learning.
+Additionally, the anonymous, decentralized nature of cryptocurriences makes it more challenging to identify and prevent fraudulent transactions. This highlights the need for more sophisticated and innovative fraud detection techniques. Finally, by investing in fraud detection, we can create a safer and more reliable environment for investors, which could increase overall confidence in the cryptocurrency market. Ultimately, investing in Ethereum fraud detection is a necessary step towards ensuring the integrity and sustainability of the cryptocurrency ecosystem.
+
+This project aims to compare graph-based to non-graph based algorithms for fraud detection in Ethereum transaction networks. We will represent transactions within the blockchain as a graph of connected Ethereum wallets, and model the fraud detection task as a node classification problem. We will predict whether a given Ethereum wallet in the transaction graph is fraudulent or non-fraudulent, given the wallet's transaction history in the network. Graph storage, exploration, analysis, and model building will be conducted using [TigerGraph](https://tgcloud.io/), an enterprise-scale graph data platform for advanced analytics and machine learning.
+
+# Why Graph?
+
+Networks are a type of graph-structured data which is often used to describe the relationship between objects. Recently, there's been an explosive growth in utilizing network data to model interactions and represent data in social networks, biological systems, supply chain networks, and financial transactions.
+
+Network embedding is a technique that represents graph nodes in a network as dense and low-dimensional vectors, while preserving their structural information and relationships. The goal is to capture the latent features and patterns of the network, which can be used for various downstream tasks such as node classification, link prediction, and clustering. The process involves training a machine learning model on the network data and generating embeddings that minimize the difference between predicted and observed edges or node attributes. Network embeddings have various applications and can help uncover hidden patterns and insights in the network data.
+
+Modeling fraud detection in Ethereum transaction networks as a graph machine learning task can be achieved with [TigerGraph](https://tgcloud.io/) NoSQL graph databases. TigerGraph allows us to store our Ethereum transaction network as a graph with defined schemas for nodes (wallets) and edges (transactions). Additionally TigerGraph's proprietary graph query language, GSQL, enables computation of graph analytics with scalable queries. In our project, we utilized TigerGraph as a database to store our transaction network as a graph, conducted exploratory data analysis using GSQL queries, and engineered nodes with additional graph features by calculating summary statistics of transaction amounts (maximum, minimum, sum, average), indegree and outdegree, and pagerank.
 
 
 # Data
@@ -24,6 +34,9 @@ The dataset can be downloaded from [XBlock](http://xblock.pro/#/dataset/6), one 
   URL = "https://arxiv.org/abs/1905.08038"
 }
 ```
+# Processing
+
+We define fraud detection in Ethereum transaction networks as a node classification problem. We will represent the transaction network as a graph where nodes represent wallets/accounts and edges represent transactions between accounts. Each node in the network has the following features: id, indegree, outdegree, minimum sent, minimum sent, total sent, average sent, minimum received, maximum received, total received, average received, pagerank and label. Each edge in the network has one associated feature, the transaction timestamp. The labelled transaction data were split into 80% training and 20% testing sets. Our goal is to learn a function mapping node attributes to a label associated with account identity, whether the target account is fraudulent or not.
 
 # Processing
 
@@ -57,3 +70,20 @@ The final model we evaluated was Topology Adaptive GCN (TA-GCN). TA-GCN is a gra
 # Results
 
 # Discussion
+<<<<<<< Updated upstream
+=======
+
+# References
+
+[1] Alin Deutsch, Yu Xu, Mingxi Wu, Victor Lee: “TigerGraph: A Native MPP Graph Database”, 2019; [arXiv:1901.08248](http://arxiv.org/abs/1901.08248)
+
+[2] Jiajing Wu, Qi Yuan, Dan Lin, Wei You, Weili Chen, Chuan Chen, Zibin Zheng: “Who Are the Phishers? Phishing Scam Detection on Ethereum via Network Embedding”, 2019, TSMC.2020.3016821; [arXiv:1911.09259](http://arxiv.org/abs/1911.09259)
+
+[3] Jiajing Wu, Dan Lin, Zibin Zheng, Qi Yuan: “T-EDGE: Temporal WEighted MultiDiGraph Embedding for Ethereum Transaction Network Analysis”, 2019, Front. Phys. 8:204 (2020); [arXiv:1905.08038](http://arxiv.org/abs/1905.08038)
+
+[4] Panpan Li, Yunyi Xie, Xinyao Xu, Jiajun Zhou, Qi Xuan: “Phishing Fraud Detection on Ethereum using Graph Neural Network”, 2022; [arXiv:2204.08194](http://arxiv.org/abs/2204.08194)
+
+[5] Jian Du, Shanghang Zhang, Guanhang Wu, Jose M. F. Moura, Soummya Kar: “Topology Adaptive Graph Convolutional Networks”, 2017; [arXiv:1710.10370](http://arxiv.org/abs/1710.10370)
+
+[6] Mark Cheung, John Shi, Lavender Yao Jiang, Oren Wright, José M. F. Moura: “Pooling in Graph Convolutional Neural Networks”, 2020; [arXiv:2004.03519](http://arxiv.org/abs/2004.03519)
+>>>>>>> Stashed changes
