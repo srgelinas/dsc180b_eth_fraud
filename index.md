@@ -26,6 +26,9 @@ We collect the transaction records based on an assumption that for a typical mon
 
 The dataset can be downloaded from [XBlock](http://xblock.pro/#/dataset/6), one of the largest blockchain data platforms that collects current mainstream blockchain data and has the widest coverage in the academic community.
 
+![Image](https://s1.ax1x.com/2020/03/27/GCZGmd.md.jpg)
+<p align="center"><em>Schematic Illustration of a Directed K-Order Subgraph for Node Classification.</em></p>
+
 # Processing
 
 We define fraud detection in Ethereum transaction networks as a node classification problem. We will represent the transaction network as a graph where nodes represent wallets/accounts and edges represent transactions between accounts. Each node in the network has the following features: id, indegree, outdegree, minimum sent, minimum sent, total sent, average sent, minimum received, maximum received, total received, average received, pagerank and label. Each edge in the network has one associated feature, the transaction timestamp. The labelled transaction data were split into 80% training and 20% testing sets. Our goal is to learn a function mapping node attributes to a label associated with account identity, whether the target account is fraudulent or not.
