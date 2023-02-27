@@ -62,6 +62,8 @@ The final model we evaluated was Topology Adaptive GCN (TA-GCN). TA-GCN is a gra
 
 # Results
 
+In this study, we conducted a comparative model performance evaluation experiment using graph and non-graph models to detect phishing fraud accounts against an Ethereum transaction network. Graph-based features improves overall model performance for both graph-based and non-graph-based models. Graph neural networks, specifically TA-GCN, performed best in the fraud detection task, as GNNs are able to learn the networks’ structural information. The most important features for predicting fraudulent wallets are pagerank and the maximum amount of ETH sent between wallets.
+
 ![Image](images/tagcn_subgraph.png)
 <p align="center"><em>Transaction Subgraph of Fraudulent Wallet</em></p>
 
@@ -69,6 +71,11 @@ The final model we evaluated was Topology Adaptive GCN (TA-GCN). TA-GCN is a gra
 <p align="center"><em>TAGCN Node Feature Importance</em></p>
 
 # Discussion
+From our experiment, we found that graph networks are a more powerful tool for modeling complex relationships between data points in comparison to traditional non-graph models. In the case of Ethereum fraud, we use graph networks to represent the connections between transactions and wallets in our Ethereum data. To detect fraud, we apply machine learning algorithms to identify anomalous patterns that might indicate fraudulent activity. From our results, we found that the effectiveness of these algorithms depend on the models being used. 
+
+Evaluating and improving machine learning models can have a significant impact on the accuracy and efficiency of fraud detection. Better models can detect more subtle patterns of fraudulent activity or reduce false positive rates, where real transactions are incorrectly flagged as fraudulent, overall improving the overall effectiveness to correctly detect fraudulent behavior. In addition, improving on these graph models can help prevent financial losses for individuals and organizations using Ethereum. It can also help build trust in the Ethereum ecosystem, which can lead to increased adoption and investment in the platform.
+
+Furthermore, as Ethereum is a fast-moving and dynamic platform, it's essential to constantly evaluate and update machine learning models to stay ahead of new types of fraud and adapt to changes in the blockchain. By doing so, we can help ensure the continued security and integrity of the Ethereum network.
 
 # References
 
