@@ -25,15 +25,7 @@ The dataset contains transaction records of 445 phishing accounts and 445 non-ph
 We collect the transaction records based on an assumption that for a typical money transfer flow centered on a phishing node, the previous node of the phishing node may be a victim, and the next one to three nodes may be the bridge nodes with money laundering behaviors, as figure shows. Therefore, we collect subgraphs by [K-order sampling](https://ieeexplore.ieee.org/document/8964468) with K-in = 1, K-out = 3 for each of the 890 objective nodes and then splice them into a large-scale network with 86,623 nodes and 106,083 edges.
 
 The dataset can be downloaded from [XBlock](http://xblock.pro/#/dataset/6), one of the largest blockchain data platforms that collects current mainstream blockchain data and has the widest coverage in the academic community.
-```
-@article{ wu2019tedge,
-  author = "Jiajing Wu and Dan Lin and Qi Yuan and Zibin Zheng",
-  title = "T-EDGE: Temporal WEighted MultiDiGraph Embedding for Ethereum Transaction Network Analysis",
-  journal = "arXiv preprint arXiv:1905.08038",
-  year = "2019",
-  URL = "https://arxiv.org/abs/1905.08038"
-}
-```
+
 # Processing
 
 We define fraud detection in Ethereum transaction networks as a node classification problem. We will represent the transaction network as a graph where nodes represent wallets/accounts and edges represent transactions between accounts. Each node in the network has the following features: id, indegree, outdegree, minimum sent, minimum sent, total sent, average sent, minimum received, maximum received, total received, average received, pagerank and label. Each edge in the network has one associated feature, the transaction timestamp. The labelled transaction data were split into 80% training and 20% testing sets. Our goal is to learn a function mapping node attributes to a label associated with account identity, whether the target account is fraudulent or not.
@@ -66,6 +58,12 @@ The final model we evaluated was Topology Adaptive GCN (TA-GCN). TA-GCN is a gra
 
 
 # Results
+
+![Image](images/tagcn_subgraph.png)
+<p align="center"><em>Transaction Subgraph of Fraudulent Wallet</em></p>
+
+![Image](images/tagcn_feat_imp.png)
+<p align="center"><em>TAGCN Node Feature Importance</em></p>
 
 # Discussion
 
