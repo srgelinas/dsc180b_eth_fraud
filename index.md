@@ -90,3 +90,5 @@ Furthermore, as Ethereum is a fast-moving and dynamic platform, it's essential t
 [5] Jian Du, Shanghang Zhang, Guanhang Wu, Jose M. F. Moura, Soummya Kar: “Topology Adaptive Graph Convolutional Networks”, 2017; [arXiv:1710.10370](http://arxiv.org/abs/1710.10370)
 
 [6] Mark Cheung, John Shi, Lavender Yao Jiang, Oren Wright, José M. F. Moura: “Pooling in Graph Convolutional Neural Networks”, 2020; [arXiv:2004.03519](http://arxiv.org/abs/2004.03519)
+
+[7] Hiroki Kanezashi, Toyotaro Suzumura, Xin Liu, Takahiro Hirofuchi: “Ethereum Fraud Detection with Heterogeneous Graph Neural Networks”, 2022; [arXiv:2203.12363](https://arxiv.org/abs/2203.12363)
