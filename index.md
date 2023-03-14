@@ -37,7 +37,15 @@ We define fraud detection in Ethereum transaction networks as a node classificat
 
 ## SVM
 
-Our group first started off with a support vector machine model (SVM) to act as our baseline. This is a supervised machine learning algorithm with the objective to find a hyperplane in an N-dimensional space (N being the # of features) that classifies the data points. Because this is a supervised learning approach, we filtered out the unlabelled data and achieved an accuracy of 48% with this classification model. 
+Our group started off with a support vector machine model (SVM) to act as our first non-graph model. This is a supervised machine learning algorithm with the objective to find the most optimal hyperplane that can best separate data points of different classes in an N-dimensional space (N being the # of features). Each transaction is represented as a vector, with each feature of the transaction (sent_eth, received_eth, pagerank) as a dimension in space. It then identifies the features that are most important for separating fraudulent and non-fraudulent transactions and finds the hyperplane that best separates the two classes. Because this is a supervised learning approach, we filtered out the unlabelled data and achieved an accuracy of 60.5% with this classification model. 
+
+## KNN
+
+Our second non-graph approach is a K-Nearest Neighbors model, where the features of each transaction are utilized to create a feature vector. The distance is then calculated between each feature vector of the test set and the existing feature vectors of the training set. The nearest transactions based on the smallest distances are identified and its label (fraudulent or non-fraudulent) is determined by its neighbors. For this algorithm, we achieved an average accuracy of 74.6%, which is higher than our first baseline using SVM. 
+
+## XGBoost
+
+For our last non-graph approach, we decided to use XGBoost (Extreme Gradient Boosting), which is an ensemble method that combines weak decision trees to create a stronger predictive model (boosting technique). This algorithm works by iteratively building decision trees and adjusting the weights of the transaction edges to minimize loss. XGBoost obtained an average accuracy of 81.6%, which is higher than some of the traditional and graph models we implemented. 
 
 ## Node2vec
 
@@ -62,20 +70,35 @@ The final model we evaluated was Topology Adaptive GCN (TA-GCN). TA-GCN is a gra
 
 # Results
 
-In this study, we conducted a comparative model performance evaluation experiment using graph and non-graph models to detect phishing fraud accounts against an Ethereum transaction network. Graph-based features improves overall model performance for both graph-based and non-graph-based models. Graph neural networks, specifically TA-GCN, performed best in the fraud detection task, as GNNs are able to learn the networks’ structural information. The most important features for predicting fraudulent wallets are pagerank and the maximum amount of ETH sent between wallets.
+In this study, we conducted a comparative model performance evaluation experiment using graph and non-graph models to detect phishing fraud accounts against an Ethereum transaction network. Graph-based features improves overall model performance for both graph-based and non-graph-based models. Graph neural networks, specifically TA-GCN, performed best in the fraud detection task, as GNNs are able to learn the networks’ structural information. 
 
 ![Image](images/tagcn_subgraph.png)
 <p align="center"><em>Transaction Subgraph of Fraudulent Wallet</em></p>
 
+Model performance was determined by taking the average classification accuracy on the testing set over 10 model runs. The resulting classifier performance for this prediction task are as follows:
+
+Support Vector Machine (~60.5%)
+K-Nearest Neighbors (~74.6%)
+XGBoost (~81.6%)
+Graph Convolutional Network (~79.6%)
+Graph Attention Network (~78.5%)
+GraphSAGE (~81.9%)
+Node2Vec (~76.6%)
+Topology Adaptive Graph Convolutional Network (~82.2%)
+
 ![Image](images/tagcn_feat_imp.png)
 <p align="center"><em>TAGCN Node Feature Importance</em></p>
 
+The most important features for predicting fraudulent wallets are pagerank and the maximum amount of ETH sent between wallets.
+
 # Discussion
-From our experiment, we found that graph networks are a more powerful tool for modeling complex relationships between data points in comparison to traditional non-graph models. In the case of Ethereum fraud, we use graph networks to represent the connections between transactions and wallets in our Ethereum data. To detect fraud, we apply machine learning algorithms to identify anomalous patterns that might indicate fraudulent activity. From our results, we found that the effectiveness of these algorithms depend on the models being used. 
+From our results, we found that the effectiveness of these algorithms depend on the models being used. For instance, we formed a hypothesis on why TA-GCN performed the best. The graph convolution of TA-GCN is characterized by multiplying polynomials of the graph adjacency matrix without any involved approximations, while traditional GCN models are based on approximating the convolution. Our performance improvements stem from the fact that we accurately capture the underlying graph structure without approximations during the convolution operation. In addition, filter topology is adaptive to the topology of the graph when scanning the graph to perform convolution, which allows for a better understanding and learning of the graph structure. This is in contrast to traditional GCN, which relies on fixed filters. Lastly, TA-GCN is computationally simpler and exhibits better performance when dealing with less sparse graphs. Given that our transaction network is not particularly sparse, this suggests that TA-GCN is well-suited for our network and may perform particularly well. 
 
-Evaluating and improving machine learning models can have a significant impact on the accuracy and efficiency of fraud detection. Better models can detect more subtle patterns of fraudulent activity or reduce false positive rates, where real transactions are incorrectly flagged as fraudulent, overall improving the overall effectiveness to correctly detect fraudulent behavior. In addition, improving on these graph models can help prevent financial losses for individuals and organizations using Ethereum. It can also help build trust in the Ethereum ecosystem, which can lead to increased adoption and investment in the platform.
+In addition, our hypothesis regarding why XGBoost performed better than some GNNs is based on several factors. Firstly, XGBoost has the ability to learn from unlabelled data, taking advantage of all the training data similar to the GNN models we chose, thus improving predictive power. Additionally, XGBoost includes an early stopping feature that can help lessen the risk of overfitting, by stopping the training process once the model’s performance begins to worsen. However, XGBoost tends to perform worse when dealing with sparse data and imbalanced data. Fortunately, our transaction network is not sparse and our training set is not imbalanced, which means that XGBoost is not at a disadvantage in these regards. 
 
-Furthermore, as Ethereum is a fast-moving and dynamic platform, it's essential to constantly evaluate and update machine learning models to stay ahead of new types of fraud and adapt to changes in the blockchain. By doing so, we can help ensure the continued security and integrity of the Ethereum network.
+Lastly, GNN models performed better than traditional models due to their ability to utilize the full training set of unlabelled data. KNN and SVM, for example, require all labeled data or nodes for training, which can limit their effectiveness. GNNs, on the other hand, are able to leverage both labeled and unlabeled data, improving their ability to learn from the full training set.
+
+From our experiment, we found that graph networks are a more powerful tool for modeling complex relationships in comparison to traditional non-graph models. Evaluating and improving machine learning models can have a significant impact on the accuracy and efficiency of fraud detection. Better models can detect more subtle patterns of fraudulent activity or reduce false positive rates, where real transactions are incorrectly flagged as fraudulent. Improving these graph models can offer advantages such as minimizing financial losses for people using Ethereum and developing trust in the Ethereum ecosystem. Furthermore, since Ethereum is a constantly growing platform, it’s essential to constantly evaluate and update machine learning models to prevent new types of fraud and adapt to changes in blockchain, ensuring the security and integrity of Ethereum. For future work, we may explore other types of algorithms that require different data structures and perhaps combine existing models to develop a model for specific tasks in blockchain. 
 
 # References
 
